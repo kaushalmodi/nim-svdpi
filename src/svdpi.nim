@@ -1,8 +1,9 @@
 import nimterop/cimport
 import os
 
-# cDisableCaching()
-# cDebug()
+# static:
+#   cDisableCaching()
+#   cDebug()
 
 const
   xlmIncludePath = getEnv("XCELIUM_ROOT") / ".." / "include"
