@@ -13,11 +13,13 @@ static:
 cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
 
 # Below manual definition of s_vpi_vecval is a workaround for
-# https://github.com/genotrance/nimterop/issues/47.
+# https://github.com/nimterop/nimterop/issues/47.
 type
   s_vpi_vecval* {.importc: "s_vpi_vecval", header: xlmIncludePath / "svdpi.h".} = object
     aval*: uint32 # we need to export the object elements too!
     bval*: uint32
 
-cAddSearchDir(xlmIncludePath)
-cImport(cSearchPath("svdpi.h"))
+# Don't use cAddSearchPath + cImport for now: https://github.com/nimterop/nimterop/issues/122
+# cAddSearchDir(xlmIncludePath)
+# cImport(cSearchPath("svdpi.h"))
+cImport(xlmIncludePath / "svdpi.h")
