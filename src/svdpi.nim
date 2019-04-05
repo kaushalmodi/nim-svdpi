@@ -9,6 +9,8 @@ const
 static:
   doAssert fileExists(xlmIncludePath / "svdpi.h")
   doAssert fileExists(xlmIncludePath / "svdpi_compatibility.h")
+  # Put cAddSearchDir in static block: https://github.com/nimterop/nimterop/issues/122
+  cAddSearchDir(xlmIncludePath)
 
 cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
 
@@ -19,7 +21,4 @@ type
     aval*: uint32 # we need to export the object elements too!
     bval*: uint32
 
-# Don't use cAddSearchPath + cImport for now: https://github.com/nimterop/nimterop/issues/122
-# cAddSearchDir(xlmIncludePath)
-# cImport(cSearchPath("svdpi.h"))
-cImport(xlmIncludePath / "svdpi.h")
+cImport(cSearchPath("svdpi.h"))
