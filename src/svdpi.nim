@@ -21,8 +21,8 @@ type
   s_vpi_vecval* {.importc: "s_vpi_vecval", header: xlmIncludePath / "svdpi.h".} = object
     aval*: uint32 # we need to export the object elements too!
     bval*: uint32
-
-cImport(cSearchPath("svdpi.h"))
+  p_vpi_vecval* = ptr s_vpi_vecval
+cImport(cSearchPath("svdpi.h"), recurse=true)
 
 ## Accessibility procs
 
