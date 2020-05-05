@@ -6,3 +6,8 @@
 
 # Unignore all dirs
 !*/
+
+.nimcache/
+*.so
+xcelium.d/
+xrun.*

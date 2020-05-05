@@ -1,0 +1,21 @@
+#+title: Running this test
+
+1. Ensure that you have Cadence Xcelium set up in your environment and
+   ~${XCELIUM_ROOT}~ env var is set.
+2. Run ~make~.
+3. You should see:
+   #+begin_example
+  xcelium> source /cad/adi/apps/cadence/xlm/linux/18.03-s06/tools/xcelium/files/xmsimrc
+  xcelium> run
+  Int sum of '{100, 200, 300, 400, 500} = 1500
+  Real sum of '{4.5, 61.7, 1.44, 48.6, 0.213} = 116.453
+  String sum of '{"You", "are", "seeing", "the", "magic", "of", "Nim", "generics!"} = "You are seeing the magic of Nim generics!"
+  Int result of '{100, 200, 300, 400, 500} = -1300
+  Real result of '{4.5, 61.7, 1.44, 48.6, 0.213} = -107.453
+  Simulation complete via $finish(1) at time 0 FS + 1
+  ./tb.sv:82     $finish;
+  xcelium> exit
+   #+end_example
+
+- NOTE :: The ~makefile.master~ in this directory is a copy of [[https://github.com/kaushalmodi/nim-systemverilog-dpic/blob/master/makefile][the
+  ~makefile~ from my *nim-systemverilog-dpi* project]].
