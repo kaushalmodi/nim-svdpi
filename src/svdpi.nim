@@ -16,6 +16,15 @@ static:
 
 cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
 
+# https://github.com/nimterop/nimterop/issues/276
+cOverride:
+  type
+    t_vpi_vecval* {.bycopy, impsvdpiHdr, importc: "struct t_vpi_vecval", completeStruct.} = object
+      aval*: uint32
+      bval*: uint32
+    s_vpi_vecval* {.importc, impsvdpiHdr, completeStruct.} = t_vpi_vecval
+    svLogicVecVal* {.importc, impsvdpiHdr, completeStruct.} = s_vpi_vecval
+
 cImport(cSearchPath("svdpi.h"), recurse = true, flags = "-f:ast2")
 
 func svPackedDataNElems*(width: cint): cint =
