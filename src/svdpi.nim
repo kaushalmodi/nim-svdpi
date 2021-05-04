@@ -18,6 +18,9 @@ cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
 
 cImport(cSearchPath("svdpi.h"), recurse = true, flags = "-f:ast2")
 
+func svPackedDataNElems*(width: cint): cint =
+  return (width + 31) shr 5
+
 ## Accessibility procs
 
 proc svSeqToSVDynArr1*[T](s: seq[T]; dynArrPtr: svOpenArrayHandle) =
