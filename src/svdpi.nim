@@ -27,10 +27,19 @@ cOverride:
 
 cImport(cSearchPath("svdpi.h"), recurse = true, flags = "-f:ast2")
 
+# Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
+# in svdpi.h.
 func svPackedDataNElems*(width: cint): cint =
   return (width + 31) shr 5
 
-## Accessibility procs
+## Accessibility templates and procs
+
+template withScope*(scopeName: untyped, body: untyped) =
+  let
+    newScope = svGetScopeFromName(scopeName.cstring)
+    oldScope = svSetScope(newScope)
+  body
+  discard svSetScope(oldScope)
 
 proc svSeqToSVDynArr1*[T](s: seq[T]; dynArrPtr: svOpenArrayHandle) =
   ## Write a Nim sequence to a one-dimensional SV dynamic array.
