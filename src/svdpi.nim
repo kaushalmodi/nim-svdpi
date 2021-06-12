@@ -44,10 +44,12 @@ template withScope*(scopeName: untyped, body: untyped) =
 proc svSeqToSVDynArr1*[T](s: seq[T]; dynArrPtr: svOpenArrayHandle) =
   ## Write a Nim sequence to a one-dimensional SV dynamic array.
   if dynArrPtr != nil: # Do nothing if the dynamic array is not allocated on the SV side.
-    for idx, val in s:
+    let
+      dynArrLen = svLength(dynArrPtr, 1)
+    for idx in 0.cint ..< min(dynArrLen, s.len.cint):
       let
-        dynArrElemPtr = cast[ptr T](svGetArrElemPtr1(dynArrPtr, idx.cint))
-      dynArrElemPtr[] = val
+        dynArrElemPtr = cast[ptr T](svGetArrElemPtr1(dynArrPtr, idx))
+      dynArrElemPtr[] = s[idx].T
 
 proc svSVDynArr1ToSeq*[T](dynArrPtr: svOpenArrayHandle): seq[T] =
   ## Write a one-dimensional SV dynamic array to a Nim sequence.
