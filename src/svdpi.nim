@@ -16,16 +16,12 @@ static:
 
 cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
 
-# https://github.com/nimterop/nimterop/issues/276
-cOverride:
-  type
-    t_vpi_vecval* {.bycopy, impsvdpiHdr, importc: "struct t_vpi_vecval", completeStruct.} = object
-      aval*: uint32
-      bval*: uint32
-    s_vpi_vecval* {.importc, impsvdpiHdr, completeStruct.} = t_vpi_vecval
-    svLogicVecVal* {.importc, impsvdpiHdr, completeStruct.} = s_vpi_vecval
-
-cImport(cSearchPath("svdpi.h"), recurse = true, flags = "-f:ast2")
+# The --noHeader prevents the use of {.header.} pragma and that in
+# turn resolves the issue seen with
+# https://github.com/nimterop/nimterop/issues/276 when running the
+# `sizeof` proc as in example
+# https://github.com/kaushalmodi/nim-systemverilog-dpic/tree/master/fast_river_of_data_dvcon_2021/9.struct_arrays.
+cImport(cSearchPath("svdpi.h"), recurse = true, flags = "--noHeader -f:ast2")
 
 # Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
 # in svdpi.h.
