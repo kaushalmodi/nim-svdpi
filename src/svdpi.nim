@@ -1,14 +1,15 @@
+
 when defined(useFuthark):
   import std/[os]
   import futhark
 
   importc:
     define DPI_COMPATIBILITY_VERSION_1800v2012
-    outputPath currentSourcePath.parentDir / ".." / "wrapper" / "svdpi_wrapper.nim"
+    outputPath currentSourcePath.parentDir() / "svdpi_wrapper.nim"
     path "../includes/"
     "svdpi.h"
 else:
-  include ".." / "wrapper" / "svdpi_wrapper.nim"
+  include "svdpi_wrapper.nim"
 
 # Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
 # in svdpi.h.
