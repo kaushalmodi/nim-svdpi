@@ -13,6 +13,12 @@ User needs to have Cadence Xcelium installed and have the
 * Examples
 See the ~svdpi~ package in use in my [[https://github.com/kaushalmodi/nim-systemverilog-dpic][Nim/SystemVerilog]] experiment
 repo.
+* Development
+To run a basic test while updating this package:
+#+begin_src shell
+cd tests/chandle
+make
+#+end_src
 * Versions tested
 - Cadence Xcelium :: 18.09-s06
 - OS :: RHEL 6.8
