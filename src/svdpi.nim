@@ -8,7 +8,6 @@ importc:
   path xlmIncludePath
   define DPI_COMPATIBILITY_VERSION_1800v2012
   "svdpi.h"
-  "svdpi_compatibility.h"
 
 # Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
 # in svdpi.h.
