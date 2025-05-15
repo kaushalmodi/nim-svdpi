@@ -1,13 +1,14 @@
-import std/[os]
-import futhark
+when defined(useFuthark):
+  import std/[os]
+  import futhark
 
-const
-  xlmIncludePath = getEnv("XCELIUM_ROOT") / ".." / "include"
-
-importc:
-  path xlmIncludePath
-  define DPI_COMPATIBILITY_VERSION_1800v2012
-  "svdpi.h"
+  importc:
+    define DPI_COMPATIBILITY_VERSION_1800v2012
+    outputPath currentSourcePath.parentDir / ".." / "wrapper" / "svdpi_wrapper.nim"
+    path "../includes/"
+    "svdpi.h"
+else:
+  include ".." / "wrapper" / "svdpi_wrapper.nim"
 
 # Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
 # in svdpi.h.
