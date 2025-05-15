@@ -11,17 +11,21 @@ extracting the [[https://github.com/nim-lang/nightlies/releases][latest nightly 
 See the ~svdpi~ package in use in my [[https://github.com/kaushalmodi/nim-systemverilog-dpic][Nim/SystemVerilog]] experiment
 repo.
 * Development
-** Requirements
+** Environment setup
 1. User needs to have Cadence Xcelium installed and have the
    ~XCELIUM_ROOT~ env var set to point to the ~bin/~ directory
    containing the ~xrun~ executable.
-2. LLVM ~clang~ needs to be installed in the environment
+2. LLVM ~clang~ needs to be installed in the environment.
+3. Install Futhark package
+   #+begin_src shell
+   nimble install futhark
+   #+end_src
 ** Updating the wrapper
 #+begin_src shell
 nim wrap
 #+end_src
 ** Testing
-To run a basic test while updating this package:
+To run a basic test while developing this package:
 #+begin_src shell
 cd tests/chandle
 make
@@ -29,5 +33,5 @@ make
 * Versions tested
 - Cadence Xcelium :: 25.03-s01
 - OS :: RHEL 8.8
-- Clang :: 19.1.7
 - Nim :: 2.3.1 (devel) as of Thu May 15 2025
+- Clang :: 19.1.7 (required only when updating the wrapper)
