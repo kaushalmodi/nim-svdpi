@@ -1,27 +1,14 @@
 import std/[os]
-import nimterop/cimport
-
-when defined(svGenWrapper):
-  static:
-    cDisableCaching()
-    cDebug()
+import futhark
 
 const
   xlmIncludePath = getEnv("XCELIUM_ROOT") / ".." / "include"
-static:
-  doAssert fileExists(xlmIncludePath / "svdpi.h")
-  doAssert fileExists(xlmIncludePath / "svdpi_compatibility.h")
-  # Put cAddSearchDir in static block: https://github.com/nimterop/nimterop/issues/122
-  cAddSearchDir(xlmIncludePath)
 
-cDefine("DPI_COMPATIBILITY_VERSION_1800v2012")
-
-# The --noHeader prevents the use of {.header.} pragma and that in
-# turn resolves the issue seen with
-# https://github.com/nimterop/nimterop/issues/276 when running the
-# `sizeof` proc as in example
-# https://github.com/kaushalmodi/nim-systemverilog-dpic/tree/master/fast_river_of_data_dvcon_2021/9.struct_arrays.
-cImport(cSearchPath("svdpi.h"), recurse = true, flags = "--noHeader -f:ast2")
+importc:
+  path xlmIncludePath
+  define DPI_COMPATIBILITY_VERSION_1800v2012
+  "svdpi.h"
+  "svdpi_compatibility.h"
 
 # Below function is similar to the SV_PACKED_DATA_NELEMS macro defined
 # in svdpi.h.
