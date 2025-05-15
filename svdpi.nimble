@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.6.0"
+version       = "1.0.0"
 author        = "Kaushal Modi"
 description   = "Small wrapper for SystemVerilog DPI-C header svdpi.h"
 license       = "MIT"
