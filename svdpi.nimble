@@ -9,4 +9,4 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.4.4", "nimterop >= 0.6.13"
+requires "nim >= 2.2.4", "futhark"
