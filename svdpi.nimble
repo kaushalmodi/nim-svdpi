@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.6.0"
+version       = "1.0.0"
 author        = "Kaushal Modi"
 description   = "Small wrapper for SystemVerilog DPI-C header svdpi.h"
 license       = "MIT"
@@ -9,4 +9,4 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.4.4", "nimterop >= 0.6.13"
+requires "nim >= 2.2.4"

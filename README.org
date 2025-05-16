@@ -7,13 +7,31 @@ nimble install svdpi
 ** How to get ~nimble~?
 Get **static binaries** for ~nim~, ~nimble~ by downloading and
 extracting the [[https://github.com/nim-lang/nightlies/releases][latest nightly build]] for your OS.
-* Requirements
-User needs to have Cadence Xcelium installed and have the
-~XCELIUM_ROOT~ env var set.
 * Examples
 See the ~svdpi~ package in use in my [[https://github.com/kaushalmodi/nim-systemverilog-dpic][Nim/SystemVerilog]] experiment
 repo.
+* Development
+** Environment setup
+1. User needs to have Cadence Xcelium installed and have the
+   ~XCELIUM_ROOT~ env var set to point to the ~bin/~ directory
+   containing the ~xrun~ executable.
+2. LLVM ~clang~ needs to be installed in the environment.
+3. Install Futhark package
+   #+begin_src shell
+   nimble install futhark
+   #+end_src
+** Updating the wrapper
+#+begin_src shell
+nim wrap
+#+end_src
+** Testing
+To run a basic test while developing this package:
+#+begin_src shell
+cd tests/chandle
+make
+#+end_src
 * Versions tested
-- Cadence Xcelium :: 18.09-s06
-- OS :: RHEL 6.8
-- Nim :: 0.19.9 as of 2019-05-08 Wed
+- Cadence Xcelium :: 25.03-s01
+- OS :: RHEL 8.8
+- Nim :: 2.3.1 (devel) as of Thu May 15 2025
+- Clang :: 19.1.7 (required only when updating the wrapper)

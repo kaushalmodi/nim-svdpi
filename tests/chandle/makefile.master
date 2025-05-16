@@ -1,4 +1,5 @@
-# Time-stamp: <2020-03-13 00:02:37 kmodi>
+# -*- Makefile -*-
+# Time-stamp: <2025-05-15 12:02:41 kmodi>
 # Author    : Kaushal Modi
 
 UVM ?= 0
@@ -36,8 +37,7 @@ endif
 DEFAULT_SV_LIB ?= libdpi.so
 # Possible values of NIM_COMPILES_TO: c, cpp
 NIM_COMPILES_TO ?= c
-# See ./gc_crash_debug/README.org on why --gc:none is the default.
-NIM_GC ?= none
+NIM_MM ?=
 NIM_RELEASE ?= 1
 NIM_DEFINES ?=
 NIM_SWITCHES ?=
@@ -78,8 +78,8 @@ endif
 ifeq ($(VALG), 1)
 	$(eval NIM_DEFINES += -d:useSysAssert -d:useGcAssert)
 endif
-ifneq ($(NIM_GC),)
-	$(eval NIM_SWITCHES += --gc:$(NIM_GC))
+ifneq ($(NIM_MM),)
+	$(eval NIM_SWITCHES += --mm:$(NIM_MM))
 endif
 	$(NIM) $(NIM_COMPILES_TO) --out:$(NIM_SO) --app:lib \
 	  --nimcache:./.nimcache \

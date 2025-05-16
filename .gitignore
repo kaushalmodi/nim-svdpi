@@ -11,3 +11,4 @@
 *.so
 xcelium.d/
 xrun.*
+.projectile-cache.eld
